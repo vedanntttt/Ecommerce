@@ -3,37 +3,55 @@ import { Product } from '@/types/product';
 const API_BASE_URL = 'https://fakestoreapi.com';
 
 export async function fetchProducts(): Promise<Product[]> {
-  const response = await fetch(`${API_BASE_URL}/products`, {
-    cache: 'no-store',
-  });
-  
-  if (!response.ok) {
-    throw new Error('Failed to fetch products');
+  try {
+    const response = await fetch(`${API_BASE_URL}/products`, {
+      cache: 'no-store',
+      next: { revalidate: 0 },
+    });
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch products: ${response.status}`);
+    }
+    
+    return response.json();
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    throw error;
   }
-  
-  return response.json();
 }
 
 export async function fetchProductById(id: number): Promise<Product> {
-  const response = await fetch(`${API_BASE_URL}/products/${id}`, {
-    cache: 'no-store',
-  });
-  
-  if (!response.ok) {
-    throw new Error('Failed to fetch product');
+  try {
+    const response = await fetch(`${API_BASE_URL}/products/${id}`, {
+      cache: 'no-store',
+      next: { revalidate: 0 },
+    });
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch product: ${response.status}`);
+    }
+    
+    return response.json();
+  } catch (error) {
+    console.error('Error fetching product:', error);
+    throw error;
   }
-  
-  return response.json();
 }
 
 export async function fetchCategories(): Promise<string[]> {
-  const response = await fetch(`${API_BASE_URL}/products/categories`, {
-    cache: 'no-store',
-  });
-  
-  if (!response.ok) {
-    throw new Error('Failed to fetch categories');
+  try {
+    const response = await fetch(`${API_BASE_URL}/products/categories`, {
+      cache: 'no-store',
+      next: { revalidate: 0 },
+    });
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch categories: ${response.status}`);
+    }
+    
+    return response.json();
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+    throw error;
   }
-  
-  return response.json();
 }

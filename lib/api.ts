@@ -9,9 +9,7 @@ export async function fetchProducts(): Promise<Product[]> {
     
     const response = await fetch(`${API_BASE_URL}/products`, {
       signal: controller.signal,
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      cache: 'no-store',
     });
     
     clearTimeout(timeoutId);
@@ -34,9 +32,7 @@ export async function fetchProductById(id: number): Promise<Product> {
     
     const response = await fetch(`${API_BASE_URL}/products/${id}`, {
       signal: controller.signal,
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      cache: 'no-store',
     });
     
     clearTimeout(timeoutId);
@@ -59,9 +55,7 @@ export async function fetchCategories(): Promise<string[]> {
     
     const response = await fetch(`${API_BASE_URL}/products/categories`, {
       signal: controller.signal,
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      cache: 'no-store',
     });
     
     clearTimeout(timeoutId);

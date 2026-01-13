@@ -1,13 +1,13 @@
 import { fetchProducts, fetchCategories } from '@/lib/api';
 import ProductList from '@/components/ProductList';
+import { Product } from '@/types/product';
 
 export const dynamic = 'force-dynamic';
-export const revalidate = 0;
 
 export default async function Home() {
-  let products = [];
-  let categories = [];
-  let error = null;
+  let products: Product[] = [];
+  let categories: string[] = [];
+  let error: string | null = null;
 
   try {
     const results = await Promise.all([

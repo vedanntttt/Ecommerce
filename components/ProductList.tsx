@@ -29,8 +29,8 @@ export default function ProductList({ initialProducts, categories }: ProductList
         .toLowerCase()
         .includes(searchQuery.toLowerCase());
       
-      // When showing favorites only, ignore category filter
-      const matchesCategory = showFavoritesOnly || selectedCategory === '' || product.category === selectedCategory;
+      // Category filter applies regardless of favorites toggle
+      const matchesCategory = selectedCategory === '' || product.category === selectedCategory;
       
       const matchesFavorites = !showFavoritesOnly || isFavorite(product.id);
       
